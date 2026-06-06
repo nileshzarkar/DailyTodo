@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Past and Completed TODOs - DailyDots</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body data-page="history">
+<header class="app-header">
+    <div class="header-inner">
+        <a class="brand" href="/">DailyDots TODO Tracker</a>
+        <nav class="app-nav" aria-label="Primary navigation">
+            <a href="/">Dashboard</a>
+            <a href="/add-todo.html">Add TODO</a>
+            <a href="/todos.html">View TODOs</a>
+            <a href="/history.html" aria-current="page">Past & Completed</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page-container">
+    <section class="card">
+        <h1>Past and Completed TODOs</h1>
+        <p>Review historical work and overdue tasks from previous cycles.</p>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <th>Priority</th>
+                        <th>Due Date</th>
+                        <th>Completed Date</th>
+                    </tr>
+                </thead>
+                <tbody id="history-table-body"></tbody>
+            </table>
+        </div>
+        <p class="feedback-message" id="history-feedback" aria-live="polite"></p>
+    </section>
+</main>
+
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View TODOs - DailyDots</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body data-page="todos">
+<header class="app-header">
+    <div class="header-inner">
+        <a class="brand" href="/">DailyDots TODO Tracker</a>
+        <nav class="app-nav" aria-label="Primary navigation">
+            <a href="/">Dashboard</a>
+            <a href="/add-todo.html">Add TODO</a>
+            <a href="/todos.html" aria-current="page">View TODOs</a>
+            <a href="/history.html">Past & Completed</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page-container">
+    <section class="card">
+        <h1>View TODOs</h1>
+        <div class="filter-grid" id="todo-filters">
+            <div class="form-row">
+                <label for="search">Search</label>
+                <input type="search" id="search" placeholder="title, description, category" />
+            </div>
+
+            <div class="form-row">
+                <label for="statusFilter">Status</label>
+                <select id="statusFilter">
+                    <option value="">All</option>
+                    <option value="PENDING">Pending</option>
+                    <option value="IN_PROGRESS">In Progress</option>
+                    <option value="COMPLETED">Completed</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label for="priorityFilter">Priority</label>
+                <select id="priorityFilter">
+                    <option value="">All</option>
+                    <option value="LOW">Low</option>
+                    <option value="MEDIUM">Medium</option>
+                    <option value="HIGH">High</option>
+                    <option value="CRITICAL">Critical</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label for="categoryFilter">Category</label>
+                <input type="text" id="categoryFilter" placeholder="work, home, study" />
+            </div>
+
+            <div class="form-row">
+                <label for="sortBy">Sort By</label>
+                <select id="sortBy">
+                    <option value="priority">Priority</option>
+                    <option value="status">Status</option>
+                    <option value="dueDate">Due Date</option>
+                    <option value="createdDate" selected>Creation Date</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label for="sortDir">Order</label>
+                <select id="sortDir">
+                    <option value="asc">Ascending</option>
+                    <option value="desc" selected>Descending</option>
+                </select>
+            </div>
+
+            <div class="form-check-row">
+                <input type="checkbox" id="includeCompleted" checked />
+                <label for="includeCompleted">Include Completed</label>
+            </div>
+
+            <div class="form-check-row">
+                <input type="checkbox" id="showPastOnly" />
+                <label for="showPastOnly">Only Past/Completed</label>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button id="applyFilters" class="primary-button" type="button">Apply</button>
+            <button id="resetFilters" class="secondary-button" type="button">Reset</button>
+        </div>
+    </section>
+
+    <section class="card">
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Category</th>
+                        <th>Due Date</th>
+                        <th>Created</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="todos-table-body"></tbody>
+            </table>
+        </div>
+        <p class="feedback-message" id="todos-feedback" aria-live="polite"></p>
+    </section>
+</main>
+
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

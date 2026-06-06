@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DailyDots Dashboard</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body data-page="dashboard">
+<header class="app-header">
+    <div class="header-inner">
+        <a class="brand" href="/">DailyDots TODO Tracker</a>
+        <nav class="app-nav" aria-label="Primary navigation">
+            <a href="/">Dashboard</a>
+            <a href="/add-todo.html">Add TODO</a>
+            <a href="/todos.html">View TODOs</a>
+            <a href="/history.html">Past & Completed</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page-container">
+    <section class="page-intro card">
+        <h1>Dashboard</h1>
+        <p>Track progress with live summary metrics and recent task activity.</p>
+    </section>
+
+    <section class="summary-grid" id="summary-grid" aria-live="polite">
+        <article class="summary-card total">
+            <h2>Total</h2>
+            <p id="total-count">0</p>
+        </article>
+        <article class="summary-card pending">
+            <h2>Pending</h2>
+            <p id="pending-count">0</p>
+        </article>
+        <article class="summary-card progress">
+            <h2>In Progress</h2>
+            <p id="in-progress-count">0</p>
+        </article>
+        <article class="summary-card completed">
+            <h2>Completed</h2>
+            <p id="completed-count">0</p>
+        </article>
+        <article class="summary-card overdue">
+            <h2>Overdue</h2>
+            <p id="overdue-count">0</p>
+        </article>
+    </section>
+
+    <section class="card">
+        <div class="section-title-row">
+            <h2>Recent TODOs</h2>
+            <a class="secondary-link" href="/todos.html">Open all</a>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Category</th>
+                        <th>Due Date</th>
+                    </tr>
+                </thead>
+                <tbody id="recent-todos-body"></tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

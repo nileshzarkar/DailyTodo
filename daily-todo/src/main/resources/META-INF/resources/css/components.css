@@ -1,0 +1,234 @@
+.brand {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--color-primary-strong);
+}
+
+.app-nav a {
+    text-decoration: none;
+    color: var(--color-text-muted);
+    font-weight: 600;
+}
+
+.app-nav a[aria-current="page"],
+.app-nav a:hover,
+.app-nav a:focus-visible {
+    color: var(--color-primary);
+}
+
+.card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    padding: var(--space-lg);
+}
+
+.summary-card {
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+}
+
+.summary-card h2 {
+    font-size: 0.95rem;
+    margin-bottom: var(--space-sm);
+}
+
+.summary-card p {
+    font-size: 1.6rem;
+    margin: 0;
+    font-weight: 700;
+}
+
+.summary-card.total {
+    background: #eef3ff;
+}
+
+.summary-card.pending {
+    background: #fff9e8;
+}
+
+.summary-card.progress {
+    background: #e9f5ff;
+}
+
+.summary-card.completed {
+    background: #e8f8ef;
+}
+
+.summary-card.overdue {
+    background: #fdeeee;
+}
+
+.todo-form {
+    display: grid;
+    gap: var(--space-md);
+}
+
+.form-row {
+    display: grid;
+    gap: 0.35rem;
+}
+
+.form-row label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 0.7rem 0.75rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font: inherit;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid rgba(32, 87, 212, 0.18);
+    border-color: var(--color-primary);
+}
+
+.form-check-row {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+.form-check-row input {
+    width: auto;
+}
+
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+}
+
+.primary-button,
+.secondary-button,
+.inline-button,
+.status-button {
+    border: none;
+    border-radius: 8px;
+    padding: 0.65rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.primary-button {
+    background: var(--color-primary);
+    color: #ffffff;
+}
+
+.primary-button:hover,
+.primary-button:focus-visible {
+    background: var(--color-primary-strong);
+}
+
+.secondary-button {
+    background: transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+}
+
+.inline-button {
+    background: #eef3ff;
+    color: var(--color-primary-strong);
+    margin-right: 0.35rem;
+}
+
+.status-button {
+    background: #e8f8ef;
+    color: var(--color-success);
+}
+
+.feedback-message {
+    min-height: 1.3rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+}
+
+.feedback-message.error {
+    color: var(--color-danger);
+}
+
+.feedback-message.success {
+    color: var(--color-success);
+}
+
+.priority-badge,
+.status-badge {
+    display: inline-block;
+    border-radius: 999px;
+    padding: 0.2rem 0.55rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.priority-badge.CRISITCAL,
+.priority-badge.CRITICAL {
+    background: #fdeeee;
+    color: var(--color-danger);
+}
+
+.priority-badge.HIGH {
+    background: #fff1e5;
+    color: #b84f0c;
+}
+
+.priority-badge.MEDIUM {
+    background: #fff9e8;
+    color: var(--color-warning);
+}
+
+.priority-badge.LOW {
+    background: #e8f8ef;
+    color: var(--color-success);
+}
+
+.status-badge.PENDING {
+    background: #fff9e8;
+    color: var(--color-warning);
+}
+
+.status-badge.IN_PROGRESS {
+    background: #e9f5ff;
+    color: #0f5b9b;
+}
+
+.status-badge.COMPLETED {
+    background: #e8f8ef;
+    color: var(--color-success);
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.section-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    margin-bottom: var(--space-sm);
+}
+
+.secondary-link {
+    color: var(--color-primary);
+    font-weight: 600;
+}

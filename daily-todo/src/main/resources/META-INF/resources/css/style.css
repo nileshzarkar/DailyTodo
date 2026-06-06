@@ -1,0 +1,14 @@
+tr.todo-overdue td {
+    background: #fff6f6;
+}
+
+.todo-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.page-intro p {
+    color: var(--color-text-muted);
+    margin-bottom: 0;
+}

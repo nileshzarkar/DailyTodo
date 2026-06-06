@@ -1,0 +1,63 @@
+:root {
+    --color-background: #f5f7fb;
+    --color-surface: #ffffff;
+    --color-surface-soft: #eef3ff;
+    --color-text: #1e2a3a;
+    --color-text-muted: #5c6a7e;
+    --color-border: #d8e0ee;
+    --color-primary: #2057d4;
+    --color-primary-strong: #163ea2;
+    --color-success: #1a8f5a;
+    --color-warning: #b47700;
+    --color-danger: #b03a3a;
+    --shadow-soft: 0 8px 20px rgba(23, 47, 91, 0.08);
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+    color: var(--color-text);
+    background: linear-gradient(170deg, #f5f7fb 0%, #ecf3ff 45%, #f8fafc 100%);
+    min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin-top: 0;
+}
+
+a {
+    color: inherit;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: top;
+}
+
+th {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+}
