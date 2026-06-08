@@ -49,6 +49,8 @@ Linux/macOS:
 
 - Dashboard: `/`
 - Add TODO: `/add-todo.html`
+  - Live character counters on form inputs
+  - Frontend limits: title `50`, description `500`
 - View TODOs: `/todos.html`
 - Edit TODO: `/edit-todo.html?id={todoId}`
 - Past and completed: `/history.html`

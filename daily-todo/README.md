@@ -45,6 +45,9 @@ App URLs after startup:
   - Status (PENDING, IN_PROGRESS, COMPLETED)
   - Category
   - Due date
+  - Live character counters on Add TODO page:
+    - Title: 50 characters max (frontend only)
+    - Description: 500 characters max (frontend only)
 - Filter and search TODOs by status, priority, category, text, completion visibility, and past/completed state
 - Sort TODOs by priority, status, due date, or created date
 - Edit TODO items
@@ -130,6 +133,8 @@ Base path: `/api/todos`
   "dueDate": "2026-06-08"
 }
 ```
+
+Note: On the Add TODO page, the frontend currently enforces `title` up to 50 characters and `description` up to 500 characters with live counters. Backend and database validation rules are unchanged.
 
 ## Environment and Configuration
 
