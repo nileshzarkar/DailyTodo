@@ -29,12 +29,14 @@
         <form id="todo-form" class="todo-form" novalidate>
             <div class="form-row">
                 <label for="title">Title</label>
-                <input type="text" id="title" name="title" maxlength="255" required />
+                <input type="text" id="title" name="title" maxlength="50" required />
+                <p class="character-counter" id="title-character-counter" aria-live="polite">0/50 characters</p>
             </div>
 
             <div class="form-row">
                 <label for="description">Description</label>
-                <textarea id="description" name="description" rows="4" maxlength="2000"></textarea>
+                <textarea id="description" name="description" rows="4" maxlength="500"></textarea>
+                <p class="character-counter" id="description-character-counter" aria-live="polite">0/500 characters</p>
             </div>
 
             <div class="form-grid">

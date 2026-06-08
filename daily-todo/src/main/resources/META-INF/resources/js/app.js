@@ -112,10 +112,50 @@ function setupCreateForm() {
     }
 
     const feedback = document.getElementById("form-feedback");
+    const titleInput = document.getElementById("title");
+    const titleCharacterCounter = document.getElementById("title-character-counter");
+    const descriptionInput = document.getElementById("description");
+    const descriptionCharacterCounter = document.getElementById("description-character-counter");
+    const titleMaxLength = 50;
+    const descriptionMaxLength = 500;
+
+    function bindCharacterCounter(inputElement, counterElement, maxLength) {
+        if (!(inputElement instanceof HTMLInputElement || inputElement instanceof HTMLTextAreaElement)) {
+            return;
+        }
+        if (!(counterElement instanceof HTMLElement)) {
+            return;
+        }
+
+        function updateCharacterCounter() {
+            if (inputElement.value.length > maxLength) {
+                inputElement.value = inputElement.value.slice(0, maxLength);
+            }
+
+            counterElement.textContent = `${inputElement.value.length}/${maxLength} characters`;
+        }
+
+        inputElement.maxLength = maxLength;
+        inputElement.addEventListener("input", updateCharacterCounter);
+        updateCharacterCounter();
+
+        return updateCharacterCounter;
+    }
+
+    const updateTitleCharacterCounter = bindCharacterCounter(titleInput, titleCharacterCounter, titleMaxLength);
+    const updateDescriptionCharacterCounter = bindCharacterCounter(descriptionInput, descriptionCharacterCounter, descriptionMaxLength);
 
     form.addEventListener("submit", async event => {
         event.preventDefault();
         const payload = collectTodoFormData(form);
+
+        if (payload.title.length > titleMaxLength) {
+            payload.title = payload.title.slice(0, titleMaxLength);
+        }
+        if (payload.description.length > descriptionMaxLength) {
+            payload.description = payload.description.slice(0, descriptionMaxLength);
+        }
+
         if (!payload.title) {
             setFeedback(feedback, "Title is required.", "error");
             return;
@@ -125,6 +165,8 @@ function setupCreateForm() {
             await addTodo(payload);
             setFeedback(feedback, "TODO created successfully.", "success");
             form.reset();
+            updateTitleCharacterCounter?.();
+            updateDescriptionCharacterCounter?.();
         } catch (error) {
             setFeedback(feedback, error.message, "error");
         }
