@@ -1,9 +1,10 @@
 package org.dailydots.service;
 
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.transaction.Transactional;
-import jakarta.ws.rs.NotFoundException;
-import jakarta.ws.rs.WebApplicationException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Locale;
+
 import org.dailydots.dto.TodoRequest;
 import org.dailydots.dto.TodoResponse;
 import org.dailydots.dto.TodoSummaryResponse;
@@ -12,10 +13,10 @@ import org.dailydots.entity.TodoPriority;
 import org.dailydots.entity.TodoStatus;
 import org.dailydots.repository.TodoRepository;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Locale;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.transaction.Transactional;
+import jakarta.ws.rs.NotFoundException;
+import jakarta.ws.rs.WebApplicationException;
 
 /**
  * Business operations for TODO management.
@@ -132,7 +133,9 @@ public class TodoService {
 
         todo.setStatus(status);
         if (status == TodoStatus.COMPLETED) {
-            todo.setCompletedDate(LocalDateTime.now());
+            if (todo.getCompletedDate() == null) {
+                todo.setCompletedDate(LocalDateTime.now());
+            }
         } else {
             todo.setCompletedDate(null);
         }
