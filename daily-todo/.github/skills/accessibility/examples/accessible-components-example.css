@@ -1,0 +1,242 @@
+:root {
+    --color-text: #1e2a3a;
+    --color-muted: #4c5f79;
+    --color-border: #c7d3e6;
+    --color-primary: #2057d4;
+    --color-primary-dark: #163ea2;
+    --color-danger: #b03a3a;
+    --color-success: #1a8f5a;
+    --surface: #ffffff;
+    --surface-soft: #f4f7fd;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+    color: var(--color-text);
+    background: linear-gradient(170deg, #f5f7fb 0%, #ecf3ff 45%, #f8fafc 100%);
+}
+
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    padding: 0.75rem 1rem;
+    background: #000000;
+    color: #ffffff;
+    text-decoration: none;
+    z-index: 1000;
+}
+
+.skip-link:focus {
+    left: 0.5rem;
+    top: 0.5rem;
+}
+
+.app-header {
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.header-inner,
+.page-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.brand {
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--color-primary-dark);
+}
+
+.app-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.app-nav a {
+    color: var(--color-muted);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.card {
+    background: var(--surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+}
+
+.todo-form {
+    display: grid;
+    gap: 1rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+}
+
+.form-row {
+    display: grid;
+    gap: 0.35rem;
+}
+
+label {
+    font-weight: 600;
+    color: var(--color-muted);
+}
+
+input,
+select,
+textarea,
+button,
+a {
+    font: inherit;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--color-text);
+    padding: 0.6rem 0.7rem;
+}
+
+.field-help {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.85rem;
+}
+
+.field-error {
+    margin: 0;
+    color: var(--color-danger);
+    font-size: 0.9rem;
+}
+
+.form-actions,
+.todo-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.primary-button,
+.secondary-button,
+.inline-button,
+.status-button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.55rem 0.9rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.primary-button {
+    background: var(--color-primary);
+    color: #ffffff;
+}
+
+.secondary-button,
+.inline-button {
+    background: var(--surface-soft);
+    color: var(--color-primary-dark);
+    border-color: var(--color-border);
+}
+
+.status-button {
+    background: #e9f7ef;
+    color: var(--color-success);
+    border-color: #bddfcf;
+}
+
+.feedback-message {
+    min-height: 1.25rem;
+    margin: 0 0 0.5rem;
+    color: var(--color-muted);
+}
+
+.feedback-message.error {
+    color: var(--color-danger);
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border-bottom: 1px solid var(--color-border);
+    text-align: left;
+    vertical-align: top;
+    padding: 0.65rem;
+}
+
+.table-caption {
+    text-align: left;
+    padding: 0.5rem 0;
+    color: var(--color-muted);
+}
+
+.badge {
+    display: inline-block;
+    border-radius: 999px;
+    padding: 0.18rem 0.5rem;
+    background: var(--surface-soft);
+    border: 1px solid var(--color-border);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid rgba(32, 87, 212, 0.4);
+    outline-offset: 2px;
+}
+
+input[aria-invalid="true"],
+textarea[aria-invalid="true"] {
+    border-color: var(--color-danger);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+@media (max-width: 720px) {
+    .header-inner,
+    .page-container {
+        padding: 0.75rem;
+    }
+}

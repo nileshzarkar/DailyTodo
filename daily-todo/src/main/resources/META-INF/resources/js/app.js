@@ -105,6 +105,50 @@ function setupTodoFilters() {
     });
 }
 
+function getInputMaxLength(inputElement, fallbackLength) {
+    if (!(inputElement instanceof HTMLInputElement || inputElement instanceof HTMLTextAreaElement)) {
+        return fallbackLength;
+    }
+
+    const maxLengthValue = Number(inputElement.dataset.maxlength);
+    return Number.isFinite(maxLengthValue) && maxLengthValue > 0 ? maxLengthValue : fallbackLength;
+}
+
+function ensureInputDescribedByCounter(inputElement, counterElement) {
+    if (!(inputElement instanceof HTMLInputElement || inputElement instanceof HTMLTextAreaElement)) {
+        return;
+    }
+    if (!(counterElement instanceof HTMLElement) || !counterElement.id) {
+        return;
+    }
+    if (!inputElement.getAttribute("aria-describedby")) {
+        inputElement.setAttribute("aria-describedby", counterElement.id);
+    }
+}
+
+function bindCharacterCounter(inputElement, counterElement, maxLength) {
+    if (!(inputElement instanceof HTMLInputElement || inputElement instanceof HTMLTextAreaElement)) {
+        return;
+    }
+    if (!(counterElement instanceof HTMLElement)) {
+        return;
+    }
+
+    function updateCharacterCounter() {
+        if (inputElement.value.length > maxLength) {
+            inputElement.value = inputElement.value.slice(0, maxLength);
+        }
+
+        counterElement.textContent = `${inputElement.value.length}/${maxLength} characters`;
+    }
+
+    inputElement.maxLength = maxLength;
+    inputElement.addEventListener("input", updateCharacterCounter);
+    updateCharacterCounter();
+
+    return updateCharacterCounter;
+}
+
 function setupCreateForm() {
     const form = document.getElementById("todo-form");
     if (!form) {
@@ -116,31 +160,11 @@ function setupCreateForm() {
     const titleCharacterCounter = document.getElementById("title-character-counter");
     const descriptionInput = document.getElementById("description");
     const descriptionCharacterCounter = document.getElementById("description-character-counter");
-    const titleMaxLength = 50;
-    const descriptionMaxLength = 500;
+    const titleMaxLength = getInputMaxLength(titleInput, 50);
+    const descriptionMaxLength = getInputMaxLength(descriptionInput, 500);
 
-    function bindCharacterCounter(inputElement, counterElement, maxLength) {
-        if (!(inputElement instanceof HTMLInputElement || inputElement instanceof HTMLTextAreaElement)) {
-            return;
-        }
-        if (!(counterElement instanceof HTMLElement)) {
-            return;
-        }
-
-        function updateCharacterCounter() {
-            if (inputElement.value.length > maxLength) {
-                inputElement.value = inputElement.value.slice(0, maxLength);
-            }
-
-            counterElement.textContent = `${inputElement.value.length}/${maxLength} characters`;
-        }
-
-        inputElement.maxLength = maxLength;
-        inputElement.addEventListener("input", updateCharacterCounter);
-        updateCharacterCounter();
-
-        return updateCharacterCounter;
-    }
+    ensureInputDescribedByCounter(titleInput, titleCharacterCounter);
+    ensureInputDescribedByCounter(descriptionInput, descriptionCharacterCounter);
 
     const updateTitleCharacterCounter = bindCharacterCounter(titleInput, titleCharacterCounter, titleMaxLength);
     const updateDescriptionCharacterCounter = bindCharacterCounter(descriptionInput, descriptionCharacterCounter, descriptionMaxLength);
@@ -180,6 +204,19 @@ async function setupEditForm() {
     }
 
     const feedback = document.getElementById("form-feedback");
+    const titleInput = document.getElementById("title");
+    const titleCharacterCounter = document.getElementById("title-character-counter");
+    const descriptionInput = document.getElementById("description");
+    const descriptionCharacterCounter = document.getElementById("description-character-counter");
+    const titleMaxLength = getInputMaxLength(titleInput, 255);
+    const descriptionMaxLength = getInputMaxLength(descriptionInput, 2000);
+
+    ensureInputDescribedByCounter(titleInput, titleCharacterCounter);
+    ensureInputDescribedByCounter(descriptionInput, descriptionCharacterCounter);
+
+    const updateTitleCharacterCounter = bindCharacterCounter(titleInput, titleCharacterCounter, titleMaxLength);
+    const updateDescriptionCharacterCounter = bindCharacterCounter(descriptionInput, descriptionCharacterCounter, descriptionMaxLength);
+
     const todoId = Number(getQueryParam("id"));
     if (!todoId) {
         setFeedback(feedback, "Missing TODO id in query string.", "error");
@@ -189,6 +226,8 @@ async function setupEditForm() {
     try {
         const todo = await fetchTodo(todoId);
         fillTodoForm(todo);
+        updateTitleCharacterCounter?.();
+        updateDescriptionCharacterCounter?.();
     } catch (error) {
         setFeedback(feedback, error.message, "error");
         return;
@@ -197,6 +236,14 @@ async function setupEditForm() {
     form.addEventListener("submit", async event => {
         event.preventDefault();
         const payload = collectTodoFormData(form);
+
+        if (payload.title.length > titleMaxLength) {
+            payload.title = payload.title.slice(0, titleMaxLength);
+        }
+        if (payload.description.length > descriptionMaxLength) {
+            payload.description = payload.description.slice(0, descriptionMaxLength);
+        }
+
         if (!payload.title) {
             setFeedback(feedback, "Title is required.", "error");
             return;

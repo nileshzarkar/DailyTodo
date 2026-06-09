@@ -30,12 +30,14 @@
 
             <div class="form-row">
                 <label for="title">Title</label>
-                <input type="text" id="title" name="title" maxlength="255" required />
+                <input type="text" id="title" name="title" data-maxlength="255" aria-describedby="title-character-counter" required />
+                <p class="character-counter" id="title-character-counter" aria-live="polite" role="status">0/255 characters</p>
             </div>
 
             <div class="form-row">
                 <label for="description">Description</label>
-                <textarea id="description" name="description" rows="4" maxlength="2000"></textarea>
+                <textarea id="description" name="description" rows="4" data-maxlength="2000" aria-describedby="description-character-counter"></textarea>
+                <p class="character-counter" id="description-character-counter" aria-live="polite" role="status">0/2000 characters</p>
             </div>
 
             <div class="form-grid">

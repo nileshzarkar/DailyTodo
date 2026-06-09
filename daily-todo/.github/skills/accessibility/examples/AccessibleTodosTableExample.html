@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accessible TODO Table Example</title>
+    <link rel="stylesheet" href="./accessible-components-example.css" />
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<main class="page-container" id="main-content">
+    <section class="card">
+        <h1>View TODOs (Accessible Table Example)</h1>
+        <p id="table-feedback" class="feedback-message" role="status" aria-live="polite"></p>
+
+        <div class="table-wrapper" aria-busy="false" id="table-region">
+            <table>
+                <caption class="table-caption">Current TODO items with action buttons for each row.</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Priority</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Due Date</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="example-todos-body"></tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<script type="module" src="./accessible-form-example.js"></script>
+</body>
+</html>

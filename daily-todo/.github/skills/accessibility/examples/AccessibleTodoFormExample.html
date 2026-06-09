@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accessible TODO Form Example</title>
+    <link rel="stylesheet" href="./accessible-components-example.css" />
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header class="app-header">
+    <div class="header-inner">
+        <a class="brand" href="#">DailyDots TODO Tracker</a>
+        <nav class="app-nav" aria-label="Primary navigation">
+            <a href="#" aria-current="page">Add TODO</a>
+            <a href="#">View TODOs</a>
+            <a href="#">History</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page-container" id="main-content">
+    <section class="card">
+        <h1>Add TODO (Accessible Example)</h1>
+        <p>Demonstrates field-level errors, live announcements, and keyboard-safe controls.</p>
+
+        <p id="form-announcement" class="feedback-message" role="status" aria-live="polite"></p>
+        <p id="form-error-summary" class="feedback-message error" role="alert" aria-live="assertive"></p>
+
+        <form id="example-todo-form" class="todo-form" novalidate>
+            <div class="form-row">
+                <label for="title">Title <span aria-hidden="true">*</span></label>
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    required
+                    aria-required="true"
+                    aria-describedby="title-help title-error"
+                />
+                <p id="title-help" class="field-help">Required. Keep it short and task-focused.</p>
+                <p id="title-error" class="field-error" hidden></p>
+            </div>
+
+            <div class="form-row">
+                <label for="description">Description</label>
+                <textarea
+                    id="description"
+                    name="description"
+                    rows="4"
+                    maxlength="500"
+                    aria-describedby="description-help description-error"
+                ></textarea>
+                <p id="description-help" class="field-help">Optional. Maximum 500 characters.</p>
+                <p id="description-error" class="field-error" hidden></p>
+            </div>
+
+            <div class="form-grid">
+                <div class="form-row">
+                    <label for="priority">Priority</label>
+                    <select id="priority" name="priority">
+                        <option value="LOW">Low</option>
+                        <option value="MEDIUM" selected>Medium</option>
+                        <option value="HIGH">High</option>
+                        <option value="CRITICAL">Critical</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="status">Status</label>
+                    <select id="status" name="status">
+                        <option value="PENDING" selected>Pending</option>
+                        <option value="IN_PROGRESS">In Progress</option>
+                        <option value="COMPLETED">Completed</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="dueDate">Due Date</label>
+                    <input type="date" id="dueDate" name="dueDate" aria-describedby="dueDate-error" />
+                    <p id="dueDate-error" class="field-error" hidden></p>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="primary-button">Create TODO</button>
+                <button type="button" id="reset-form" class="secondary-button">Reset</button>
+            </div>
+        </form>
+    </section>
+</main>
+
+<script type="module" src="./accessible-form-example.js"></script>
+</body>
+</html>
